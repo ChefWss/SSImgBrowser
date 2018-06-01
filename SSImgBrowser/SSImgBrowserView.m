@@ -44,6 +44,7 @@ static NSString *const cellID = @"ImgCell";
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
     self.collectionview.contentOffset = CGPointMake(0, 0);
     _collectionview = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:layout];
     _collectionview.delegate = self;
@@ -66,13 +67,8 @@ static NSString *const cellID = @"ImgCell";
     return cell;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 0);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-
 }
 
 #pragma mark - scrollView delegate
@@ -90,8 +86,8 @@ static NSString *const cellID = @"ImgCell";
         
         __strong typeof(self) strongSelf = weakSelf;
         strongSelf.frame = [Tool getImgFrameWithIndex:self.imgIndex];
-        self.collectionview.frame = self.bounds;
-
+        strongSelf.collectionview.frame = strongSelf.bounds;
+        
     } completion:^(BOOL finished) {
         
         __strong typeof(self) strongSelf = weakSelf;
