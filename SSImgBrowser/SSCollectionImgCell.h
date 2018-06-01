@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CellCloseActionDelegate <NSObject>
+- (void)delegateCellCloseAction;
+@end
+
 @class ImgModel;
 @interface SSCollectionImgCell : UICollectionViewCell
+@property (nonatomic, weak) id<CellCloseActionDelegate> delegate;
 @property(nonatomic, strong) ImgModel *model;
 @end

@@ -10,5 +10,5 @@
 
 @interface Tool : NSObject
 + (CGRect)getImgFrameFromCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath onView:(UIView *)onView;
-+ (CGRect)getImgFrameWithIndex:(NSInteger)index;
+//+ (CGRect)getImgFrameWithIndex:(NSInteger)index;
 @end

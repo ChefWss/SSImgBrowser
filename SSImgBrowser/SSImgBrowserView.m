@@ -7,10 +7,11 @@
 //
 
 #import "SSImgBrowserView.h"
-#import "ImgModel.h"
 #import "SSCollectionImgCell.h"
 
-@interface SSImgBrowserView()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
+@interface SSImgBrowserView()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, CellCloseActionDelegate>
+@property (nonatomic, assign) NSInteger                 imgIndex;
+@property (nonatomic, strong) NSMutableArray           *modelArray;
 @property (nonatomic, assign) CGRect            initialFrame;
 @property (nonatomic, strong) UICollectionView *collectionview;
 @end
@@ -31,8 +32,8 @@ static NSString *const cellID = @"ImgCell";
     if (self = [super init]) {
         
         self.backgroundColor = [UIColor colorWithRed:0.13 green:0.12 blue:0.11 alpha:1.00];
-//        self.backgroundColor = [UIColor clearColor];
         [self createUI];
+        
     }
     return self;
 }
@@ -64,6 +65,7 @@ static NSString *const cellID = @"ImgCell";
     SSCollectionImgCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     cell.model = self.modelArray[indexPath.row];
     cell.backgroundColor = [UIColor greenColor];
+    cell.delegate = self;
     return cell;
 }
 
@@ -79,13 +81,17 @@ static NSString *const cellID = @"ImgCell";
 
 
 #pragma mark - closeAction
+- (void)delegateCellCloseAction {
+    [self closeAction];
+}
+
 - (void)closeAction
 {
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:AnimationTime animations:^{
         
         __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.frame = [Tool getImgFrameWithIndex:self.imgIndex];
+        strongSelf.frame = strongSelf.initialFrame;
         strongSelf.collectionview.frame = strongSelf.bounds;
         
     } completion:^(BOOL finished) {
@@ -97,33 +103,25 @@ static NSString *const cellID = @"ImgCell";
 }
 
 #pragma mark - show & dismiss
-- (void)showImgBrowserInViewController:(UIViewController<SSImgBrowserDelegate> *)viewController
-                          initialFrame:(CGRect)initialFrame
-                              modelArr:(NSMutableArray *)modelArr
-                              imgIndex:(NSInteger)index
+- (void)showImageBrowserInViewController:(UIViewController *)viewController
+                          collectionView:(UICollectionView *)collectionView
+                            imgIndexPath:(NSIndexPath *)indexPath
+                                modelArr:(NSMutableArray *)modelArr
 {
     self.modelArray = modelArr;
-    self.imgIndex = index;
-    self.initialFrame = initialFrame;
-    self.delegate = viewController;
-    
+    self.imgIndex = indexPath.row;
+    self.initialFrame = [Tool getImgFrameFromCollectionView:collectionView indexPath:indexPath onView:viewController.view];
     [viewController.view addSubview:self];
     self.frame = self.initialFrame;
     self.collectionview.frame = self.bounds;
-    [self.collectionview reloadData];
     
-    self.collectionview.contentOffset = CGPointMake(self.imgIndex * WIDTH, 0);
+//    [self.collectionview reloadData];
+//    self.collectionview.contentOffset = CGPointMake(self.imgIndex * WIDTH, 0);
+    
     [UIView animateWithDuration:AnimationTime animations:^{
         self.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
         self.collectionview.frame = self.bounds;
     }];
-
-    
-    //背景灰色添加轻拍手势
-    UITapGestureRecognizer *gester = [[UITapGestureRecognizer alloc] init];
-    [self addGestureRecognizer:gester];
-    [gester addTarget:self action:@selector(closeAction)];
- 
 }
 
 @end

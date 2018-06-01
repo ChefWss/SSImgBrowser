@@ -11,5 +11,4 @@
 @interface ImgModel : NSObject
 @property (nonatomic, copy) NSString  *imgUrl;
 @property (nonatomic, strong) UIImage *img;
-@property (nonatomic, assign) CGRect  imgFrame;
 @end

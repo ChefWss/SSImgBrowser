@@ -10,7 +10,7 @@
 #import "SSImgBrowserView.h"
 #import "ImgModel.h"
 
-@interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, SSImgBrowserDelegate>
+@interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, copy) NSArray            *imgUrlArray;
 @property (nonatomic, strong) NSMutableArray   *modelArray;
@@ -61,7 +61,9 @@ static NSString *const cellID = @"Cell";
     
     [self createModelArray];
     [self createUI];
+
 }
+
 
 - (void)createModelArray
 {
@@ -111,9 +113,7 @@ static NSString *const cellID = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ImgModel *model = self.modelArray[indexPath.row];    
-    model.imgFrame = [Tool getImgFrameWithIndex:indexPath.row];
-    [self.imgBrowserView showImgBrowserInViewController:self initialFrame:model.imgFrame modelArr:self.modelArray imgIndex:indexPath.row];
+    [self.imgBrowserView showImageBrowserInViewController:self collectionView:collectionView imgIndexPath:indexPath modelArr:self.modelArray];
 }
 
 - (void)didReceiveMemoryWarning {
