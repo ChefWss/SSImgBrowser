@@ -34,4 +34,33 @@
 //    return [UIImage imageWithData:imageData];
 //}
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
+}
+
+@end
+
+
+
+@implementation InitialFrameModel
+
+- (instancetype)initWithcollectionView:(UICollectionView *)collectionV indexPath:(NSIndexPath *)indexPath onView:(UIView *)onView
+{
+    self = [super init];
+    if (self)
+    {
+        self.collectionV = collectionV;
+        self.indesPath = indexPath;
+        self.onView = onView;
+    }
+    return self;
+}
+
+- (CGRect)getCloseFrameWithImageIndex:(NSInteger)imgIndex
+{
+    _placeholder_InitialFrame = [Tool getImgFrameFromCollectionView:_collectionV indexPath:[NSIndexPath indexPathForRow:imgIndex inSection:0] onView:_onView];
+    return _placeholder_InitialFrame;
+}
+
 @end

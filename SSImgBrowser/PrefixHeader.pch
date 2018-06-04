@@ -12,7 +12,7 @@
 
 #define ImgCountEachLine    3      //每行n张图
 #define ImgSpacing          10.00f //距离
-#define AnimationTime       1   //动画时间
+#define AnimationTime       0.25   //动画时间
 
 
 //屏幕适配因子
@@ -40,7 +40,7 @@
 //#import <AFNetworking.h>
 #import <UIImageView+WebCache.h>
 //#import <MJExtension.h>
-//#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "Tool.h"
 
 

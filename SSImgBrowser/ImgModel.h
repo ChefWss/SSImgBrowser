@@ -12,3 +12,13 @@
 @property (nonatomic, copy) NSString  *imgUrl;
 @property (nonatomic, strong) UIImage *img;
 @end
+
+
+@interface InitialFrameModel : NSObject
+@property (nonatomic, assign) CGRect placeholder_InitialFrame;
+@property(nonatomic, strong) UICollectionView *collectionV;
+@property(nonatomic, strong) NSIndexPath *indesPath;
+@property(nonatomic, strong) UIView *onView;
+- (instancetype)initWithcollectionView:(UICollectionView *)collectionV indexPath:(NSIndexPath *)indexPath onView:(UIView *)onView;
+- (CGRect)getCloseFrameWithImageIndex:(NSInteger)imgIndex;
+@end

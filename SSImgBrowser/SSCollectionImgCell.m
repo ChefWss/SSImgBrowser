@@ -13,8 +13,6 @@
 @property(nonatomic, strong) UIImageView *imgV;
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, assign) BOOL zoomOut_In;//out-1 in-0
-//@property(nonatomic, assign) CGFloat min_ScrollViewZoomScale; //捏合手势最小比例
-//@property(nonatomic, assign) CGFloat max_ScrollViewZoomScale;
 @end
 
 @implementation SSCollectionImgCell
@@ -25,9 +23,9 @@
     [_imgV sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
         __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.scrollView.contentSize = image.size;
         strongSelf.model.img = image;
-//        [weakSelf reckonTapGestureScaleWithImage:image];
+        //计算最大捏合比例
+        [strongSelf reckonMax_ScrollViewZoomScaleWithImgSize:image.size];
         
     }];
     
@@ -37,20 +35,21 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
 
         _scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
         [self addSubview:_scrollView];
         //设置代理scrollview的代理对象
         _scrollView.delegate = self;
         //设置最大伸缩比例
-        _scrollView.maximumZoomScale = 3.0;
+        _scrollView.maximumZoomScale = 2.5f;
         //设置最小伸缩比例
-        _scrollView.minimumZoomScale = 0.5;
+        _scrollView.minimumZoomScale = 1.0f;
         //打开多指触控
         _scrollView.multipleTouchEnabled = YES;
 
         
-        _imgV = [[UIImageView alloc] initWithFrame:self.bounds];
+        _imgV = [[UIImageView alloc] initWithFrame:_scrollView.bounds];
         _imgV.userInteractionEnabled = YES;
         _imgV.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:_imgV];
@@ -79,15 +78,18 @@
 }
 
 #pragma mark - 手势代理
+//单指
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender {
     if (sender.numberOfTouchesRequired == 1) {
         [self.delegate delegateCellCloseAction];
     }
-    
 }
+
+//双指
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
     if (sender.numberOfTouchesRequired == 1) {
-        float newscale=0.0;
+        
+        float newscale = 0.0;
         
         if (_zoomOut_In) {
             newscale = 2*1.5;
@@ -121,41 +123,36 @@
     NSLog(@"正在缩放.....");
 }
 
-
-
-- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center {
-    
+- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center
+{
     CGRect zoomRect;
     
-    
-    
     zoomRect.size.height = [_scrollView frame].size.height / scale;
+    zoomRect.size.width = [_scrollView frame].size.width  / scale;
     
-    zoomRect.size.width  = [_scrollView frame].size.width  / scale;
-    
-    
-    
-    zoomRect.origin.x    = center.x - (zoomRect.size.width  / 2.0);
-    
-    
-    
-    zoomRect.origin.y    = center.y - (zoomRect.size.height / 2.0);
-    
-    
-    
+    zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.0);
+    zoomRect.origin.y = center.y - (zoomRect.size.height / 2.0);
+
     return zoomRect;
-    
 }
 
 #pragma mark - 计算捏合比例
-//- (void)reckonTapGestureScaleWithImage:(UIImage *)img
-//{
-//    CGFloat w = img.size.width;
-//    CGFloat h = img.size.height;
+- (void)reckonMax_ScrollViewZoomScaleWithImgSize:(CGSize)imgSize
+{
+//    CGFloat max_ScrollViewZoomScale;
 //
-//    if ((h*1.00 / w) > (HEIGHT*1.00 / WIDTH)) {
-//
+//    if ((imgSize.width / imgSize.height ) >= (2 * WIDTH / HEIGHT)) {
+//        max_ScrollViewZoomScale = WIDTH / imgSize.width;
 //    }
-//}
+//    else if ((imgSize.height / imgSize.width) >= (2 * HEIGHT / WIDTH)) {
+//
+//        WIDTH / ( WIDTH * (imgSize.height / HEIGHT));
+//
+//        max_ScrollViewZoomScale = HEIGHT / imgSize.height;
+//    }
+//    else max_ScrollViewZoomScale = 2.5f;
+//
+//    _scrollView.maximumZoomScale = max_ScrollViewZoomScale;
+}
 
 @end
