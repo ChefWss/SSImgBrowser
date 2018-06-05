@@ -109,11 +109,14 @@ static NSString *const cellID = @"Cell";
     cell.backgroundColor = kRandomColor;
     UIImageView *imgV =  [[UIImageView alloc] init];
     ImgModel *model = self.modelArray[indexPath.row];
-    [imgV sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:GetImgWithName(@"placeHolderImg")];
+    [imgV sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:GetImgWithName(@"placeHolderImg") completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        model.imgSize = image.size;
+    }];
     imgV.contentMode = UIViewContentModeScaleAspectFill;//设置填充渲染
     imgV.clipsToBounds = YES;//把超出部分裁减掉。
     cell.backgroundView = imgV;
     return cell;
+    
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {

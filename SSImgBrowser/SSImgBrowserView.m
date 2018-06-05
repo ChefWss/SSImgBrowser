@@ -10,7 +10,7 @@
 #import "SSCollectionImgCell.h"
 #import "ImgModel.h"
 
-@interface SSImgBrowserView()<UICollectionViewDelegate, UICollectionViewDataSource, CellCloseActionDelegate>
+@interface SSImgBrowserView()<UICollectionViewDelegate, UICollectionViewDataSource, CellCloseActionDelegate, UICollectionViewDelegateFlowLayout>
 {
     CGFloat _offer;
 }
@@ -37,7 +37,7 @@ static CGFloat CellImgSpacing = 0;
     
     if (self = [super init]) {
         
-        self.backgroundColor = [UIColor colorWithRed:0.13 green:0.12 blue:0.11 alpha:1.00];
+        self.backgroundColor = [UIColor blackColor];
         
         [self createUI];
         
@@ -89,6 +89,13 @@ static CGFloat CellImgSpacing = 0;
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
+//设置每个item的大小
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    ImgModel *model = self.modelArray[indexPath.row];
+//    CGSize imgSize = model.imgSize;
+//    CGFloat itemH = WIDTH / imgSize.width * imgSize.height;
+//    return CGSizeMake(WIDTH, itemH);
+//}
 
 #pragma mark - closeAction
 - (void)delegateCellCloseAction {

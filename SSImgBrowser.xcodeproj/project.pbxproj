@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26D4389E8E72DFC08DFCC582 /* libPods-SSImgBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD8A34BCE461E53E00402B8 /* libPods-SSImgBrowser.a */; };
 		5C35D05020BE35D300677FD8 /* ImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C35D04F20BE35D300677FD8 /* ImgModel.m */; };
+		5C5B743D20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5B743C20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m */; };
 		5C666D0020BE858200C2929F /* SSCollectionImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C666CFF20BE858200C2929F /* SSCollectionImgCell.m */; };
 		5C666D0320BE8BA400C2929F /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C666D0220BE8BA400C2929F /* Tool.m */; };
 		5C85DF9F20BD1E1000612781 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C85DF9E20BD1E1000612781 /* AppDelegate.m */; };
@@ -45,6 +46,8 @@
 		58A5238DF2F26B1822DEF06B /* Pods-SSImgBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSImgBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSImgBrowser/Pods-SSImgBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		5C35D04E20BE35D300677FD8 /* ImgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImgModel.h; sourceTree = "<group>"; };
 		5C35D04F20BE35D300677FD8 /* ImgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImgModel.m; sourceTree = "<group>"; };
+		5C5B743B20C6290600F53CD1 /* SScollectionImageCellFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SScollectionImageCellFlowLayout.h; sourceTree = "<group>"; };
+		5C5B743C20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SScollectionImageCellFlowLayout.m; sourceTree = "<group>"; };
 		5C666CFE20BE858200C2929F /* SSCollectionImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSCollectionImgCell.h; sourceTree = "<group>"; };
 		5C666CFF20BE858200C2929F /* SSCollectionImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSCollectionImgCell.m; sourceTree = "<group>"; };
 		5C666D0120BE8BA400C2929F /* Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				5C85DFD520BD501600612781 /* SSImgBrowserView.m */,
 				5C666CFE20BE858200C2929F /* SSCollectionImgCell.h */,
 				5C666CFF20BE858200C2929F /* SSCollectionImgCell.m */,
+				5C5B743B20C6290600F53CD1 /* SScollectionImageCellFlowLayout.h */,
+				5C5B743C20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m */,
 				5C666D0120BE8BA400C2929F /* Tool.h */,
 				5C666D0220BE8BA400C2929F /* Tool.m */,
 				5C85DFD020BD4B8200612781 /* PrefixHeader.pch */,
@@ -339,6 +344,7 @@
 				5C666D0320BE8BA400C2929F /* Tool.m in Sources */,
 				5C85DF9F20BD1E1000612781 /* AppDelegate.m in Sources */,
 				5C666D0020BE858200C2929F /* SSCollectionImgCell.m in Sources */,
+				5C5B743D20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m in Sources */,
 				5C85DFD620BD501600612781 /* SSImgBrowserView.m in Sources */,
 				5C35D05020BE35D300677FD8 /* ImgModel.m in Sources */,
 			);

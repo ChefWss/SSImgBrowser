@@ -13,6 +13,7 @@
 @property(nonatomic, strong) UIImageView *imgV;
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, assign) BOOL zoomOut_In;//out-1 in-0
+@property(nonatomic, assign) CGFloat max_ScrollViewZoomScale;//最大捏合度
 @end
 
 @implementation SSCollectionImgCell
@@ -24,7 +25,7 @@
         
         __strong typeof(self) strongSelf = weakSelf;
         strongSelf.model.img = image;
-        //计算最大捏合比例
+        
         [strongSelf reckonMax_ScrollViewZoomScaleWithImgSize:image.size];
         
     }];
@@ -36,13 +37,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-
         _scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
         [self addSubview:_scrollView];
         //设置代理scrollview的代理对象
         _scrollView.delegate = self;
         //设置最大伸缩比例
-        _scrollView.maximumZoomScale = 2.5f;
+        _scrollView.maximumZoomScale = 3.0f;
         //设置最小伸缩比例
         _scrollView.minimumZoomScale = 1.0f;
         //打开多指触控
@@ -102,7 +102,8 @@
         
         CGRect zoomRect = [self zoomRectForScale:newscale withCenter:[sender locationInView:sender.view]];
         NSLog(@"zoomRect:%@",NSStringFromCGRect(zoomRect));
-        [_scrollView zoomToRect:zoomRect animated:YES];//重新定义其cgrect的x和y值
+        [_scrollView zoomToRect:zoomRect animated:YES];//重新定义其cgrect的x和y值        
+        
     }
 }
 
@@ -136,23 +137,21 @@
     return zoomRect;
 }
 
-#pragma mark - 计算捏合比例
+#pragma mark - 计算最大捏合度
 - (void)reckonMax_ScrollViewZoomScaleWithImgSize:(CGSize)imgSize
 {
-//    CGFloat max_ScrollViewZoomScale;
-//
-//    if ((imgSize.width / imgSize.height ) >= (2 * WIDTH / HEIGHT)) {
-//        max_ScrollViewZoomScale = WIDTH / imgSize.width;
-//    }
-//    else if ((imgSize.height / imgSize.width) >= (2 * HEIGHT / WIDTH)) {
-//
-//        WIDTH / ( WIDTH * (imgSize.height / HEIGHT));
-//
-//        max_ScrollViewZoomScale = HEIGHT / imgSize.height;
-//    }
-//    else max_ScrollViewZoomScale = 2.5f;
-//
-//    _scrollView.maximumZoomScale = max_ScrollViewZoomScale;
+    if ((imgSize.width / imgSize.height ) >= (2 * WIDTH / HEIGHT)) {
+        _max_ScrollViewZoomScale = WIDTH / imgSize.width;
+    }
+    else if ((imgSize.height / imgSize.width) >= (2 * HEIGHT / WIDTH)) {
+
+        WIDTH / ( WIDTH * (imgSize.height / HEIGHT));
+
+        _max_ScrollViewZoomScale = HEIGHT / imgSize.height;
+    }
+    else _max_ScrollViewZoomScale = 3.0f;
+
+    _scrollView.maximumZoomScale = _max_ScrollViewZoomScale;
 }
 
 @end
