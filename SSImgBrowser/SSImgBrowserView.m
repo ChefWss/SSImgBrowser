@@ -14,11 +14,11 @@
 {
     CGFloat _offer;
 }
-@property(nonatomic, strong) InitialFrameModel *initialFrameModel;
-@property (nonatomic, strong) UIImageView      *placeholderImgV;
-@property (nonatomic, assign) NSInteger         imgIndex;
-@property (nonatomic, strong) NSMutableArray   *modelArray;
-@property (nonatomic, strong) UICollectionView *collectionview;
+@property (nonatomic, strong) InitialFrameModel *initialFrameModel;
+@property (nonatomic, strong) UIImageView       *placeholderImgV;
+@property (nonatomic, assign) NSInteger          imgIndex;
+@property (nonatomic, strong) NSMutableArray    *modelArray;
+@property (nonatomic, strong) UICollectionView  *collectionview;
 @end
 
 static NSString *const cellID = @"ImgCell";
