@@ -26,7 +26,7 @@
         __strong typeof(self) strongSelf = weakSelf;
         strongSelf.model.img = image;
         
-        [strongSelf reckonMax_ScrollViewZoomScaleWithImgSize:image.size];
+//        [strongSelf reckonMax_ScrollViewZoomScaleWithImgSize:image.size];
         
     }];
     

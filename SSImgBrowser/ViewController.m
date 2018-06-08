@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SSImgBrowserView.h"
 #import "ImgModel.h"
+#import "TVUViewController.h"
 
 @interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -68,50 +69,8 @@ static NSString *const cellID = @"Cell";
                      @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528107682396&di=f1dcd63555681b51e4aa85845b5c9c14&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01e7ce5979aabea8012193a38ab69d.jpg%402o.jpg"];
     
     [self createModelArray];
-    [self createUI];
-    
-    
-    //  现在我们需要一个简单的算法，检测采集到的数据指标中，是否有异常。 异常的检测标准是：如果在连续m分钟内的指标的平均值大于w，则说明有异常。 输入：数组a[n], 正整数m, 整数w 返回：有异常返回 1，没有异常返回 0 例如：对于a={1, 5, 1, 3, 2}, m=2, w=2, 返回:1 附加说明：不同的实现方式执行效率不一样，如果能找到一个很高效的算法就更好了。
-    
-    
 
 }
-
-//    
-//    
-//
-//}
-//
-//- (BOOL)getAbnormalWithArray:(NSArray *)array time:(NSInteger)time meanValue:(NSInteger)meanValue
-//{
-//    NSInteger max = time * meanValue;
-//    NSInteger count = array.count;
-//    int sum = 0;
-//    for (int i = 0; i < count; i++) {
-//        int currentValue = [array[i] intValue];
-//        if (currentValue <= meanValue) {
-//            continue;
-//        }else{
-//            NSInteger start = i - time + 1;
-//            if (start < 0) {
-//                start = 0;
-//            }
-//            NSInteger loop = count - i;
-//            if (loop > time) {
-//                loop = time;
-//            }
-//            while (loop>0) {
-//                sum = 0;
-//                for (NSInteger j = start; j < time+start; j++) {
-//                    sum += [array[j] intValue];
-//                }
-//                if (sum>max) {
-//                    return YES;
-//                }
-//                start++;
-//                loop--;
-//            }
-
 
 - (void)createModelArray
 {
@@ -167,6 +126,7 @@ static NSString *const cellID = @"Cell";
 {
     [self.imgBrowserView showImageBrowserInViewController:self collectionView:collectionView imgIndexPath:indexPath modelArr:self.modelArray];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

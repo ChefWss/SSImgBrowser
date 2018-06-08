@@ -12,6 +12,7 @@
 		5C5B743D20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5B743C20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m */; };
 		5C666D0020BE858200C2929F /* SSCollectionImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C666CFF20BE858200C2929F /* SSCollectionImgCell.m */; };
 		5C666D0320BE8BA400C2929F /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C666D0220BE8BA400C2929F /* Tool.m */; };
+		5C7AF34C20C8FD8F0089DBC5 /* TVUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7AF34B20C8FD8F0089DBC5 /* TVUViewController.m */; };
 		5C85DF9F20BD1E1000612781 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C85DF9E20BD1E1000612781 /* AppDelegate.m */; };
 		5C85DFA220BD1E1000612781 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C85DFA120BD1E1000612781 /* ViewController.m */; };
 		5C85DFA520BD1E1000612781 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C85DFA320BD1E1000612781 /* Main.storyboard */; };
@@ -52,6 +53,8 @@
 		5C666CFF20BE858200C2929F /* SSCollectionImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSCollectionImgCell.m; sourceTree = "<group>"; };
 		5C666D0120BE8BA400C2929F /* Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		5C666D0220BE8BA400C2929F /* Tool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
+		5C7AF34A20C8FD8F0089DBC5 /* TVUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVUViewController.h; sourceTree = "<group>"; };
+		5C7AF34B20C8FD8F0089DBC5 /* TVUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVUViewController.m; sourceTree = "<group>"; };
 		5C85DF9A20BD1E0F00612781 /* SSImgBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSImgBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C85DF9D20BD1E1000612781 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5C85DF9E20BD1E1000612781 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -111,6 +114,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5C7AF34920C8FD660089DBC5 /* TVU */ = {
+			isa = PBXGroup;
+			children = (
+				5C7AF34A20C8FD8F0089DBC5 /* TVUViewController.h */,
+				5C7AF34B20C8FD8F0089DBC5 /* TVUViewController.m */,
+			);
+			path = TVU;
+			sourceTree = "<group>";
+		};
 		5C85DF9120BD1E0F00612781 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +162,7 @@
 				5C5B743C20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m */,
 				5C666D0120BE8BA400C2929F /* Tool.h */,
 				5C666D0220BE8BA400C2929F /* Tool.m */,
+				5C7AF34920C8FD660089DBC5 /* TVU */,
 				5C85DFD020BD4B8200612781 /* PrefixHeader.pch */,
 				5C85DFA320BD1E1000612781 /* Main.storyboard */,
 				5C85DFA620BD1E1100612781 /* Assets.xcassets */,
@@ -347,6 +360,7 @@
 				5C5B743D20C6290600F53CD1 /* SScollectionImageCellFlowLayout.m in Sources */,
 				5C85DFD620BD501600612781 /* SSImgBrowserView.m in Sources */,
 				5C35D05020BE35D300677FD8 /* ImgModel.m in Sources */,
+				5C7AF34C20C8FD8F0089DBC5 /* TVUViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
