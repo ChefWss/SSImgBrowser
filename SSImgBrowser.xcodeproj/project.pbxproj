@@ -22,6 +22,8 @@
 		5C85DFB720BD1E1100612781 /* SSImgBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C85DFB620BD1E1100612781 /* SSImgBrowserTests.m */; };
 		5C85DFC220BD1E1100612781 /* SSImgBrowserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C85DFC120BD1E1100612781 /* SSImgBrowserUITests.m */; };
 		5C85DFD620BD501600612781 /* SSImgBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C85DFD520BD501600612781 /* SSImgBrowserView.m */; };
+		5C9B26AC20D0FBF80071A93A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9B26AB20D0FBF80071A93A /* CoreBluetooth.framework */; };
+		5C9B26B220D0FD3B0071A93A /* LLBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B26B120D0FD3B0071A93A /* LLBluetoothManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,9 @@
 		5C85DFD020BD4B8200612781 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5C85DFD420BD501600612781 /* SSImgBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSImgBrowserView.h; sourceTree = "<group>"; };
 		5C85DFD520BD501600612781 /* SSImgBrowserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSImgBrowserView.m; sourceTree = "<group>"; };
+		5C9B26AB20D0FBF80071A93A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		5C9B26B020D0FD3B0071A93A /* LLBluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBluetoothManager.h; sourceTree = "<group>"; };
+		5C9B26B120D0FD3B0071A93A /* LLBluetoothManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBluetoothManager.m; sourceTree = "<group>"; };
 		FBD8A34BCE461E53E00402B8 /* libPods-SSImgBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SSImgBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD0CF596C3553D6418D77F2 /* libPods-SSImgBrowserUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SSImgBrowserUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C9B26AC20D0FBF80071A93A /* CoreBluetooth.framework in Frameworks */,
 				26D4389E8E72DFC08DFCC582 /* libPods-SSImgBrowser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +113,7 @@
 		1125426154E0AD79E4088E26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C9B26AB20D0FBF80071A93A /* CoreBluetooth.framework */,
 				FBD8A34BCE461E53E00402B8 /* libPods-SSImgBrowser.a */,
 				2546348A6C7EB0E3995773D0 /* libPods-SSImgBrowserTests.a */,
 				FCD0CF596C3553D6418D77F2 /* libPods-SSImgBrowserUITests.a */,
@@ -119,6 +126,8 @@
 			children = (
 				5C7AF34A20C8FD8F0089DBC5 /* TVUViewController.h */,
 				5C7AF34B20C8FD8F0089DBC5 /* TVUViewController.m */,
+				5C9B26B020D0FD3B0071A93A /* LLBluetoothManager.h */,
+				5C9B26B120D0FD3B0071A93A /* LLBluetoothManager.m */,
 			);
 			path = TVU;
 			sourceTree = "<group>";
@@ -354,6 +363,7 @@
 			files = (
 				5C85DFA220BD1E1000612781 /* ViewController.m in Sources */,
 				5C85DFAD20BD1E1100612781 /* main.m in Sources */,
+				5C9B26B220D0FD3B0071A93A /* LLBluetoothManager.m in Sources */,
 				5C666D0320BE8BA400C2929F /* Tool.m in Sources */,
 				5C85DF9F20BD1E1000612781 /* AppDelegate.m in Sources */,
 				5C666D0020BE858200C2929F /* SSCollectionImgCell.m in Sources */,
