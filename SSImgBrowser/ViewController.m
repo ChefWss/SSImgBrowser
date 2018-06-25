@@ -26,7 +26,8 @@ static NSString *const cellID = @"Cell";
 
 - (SSImgBrowserView *)imgBrowserView
 {
-    if (!_imgBrowserView) {
+    if (!_imgBrowserView)
+    {
         _imgBrowserView = [[SSImgBrowserView alloc] init];
     }
     return _imgBrowserView;
@@ -35,7 +36,8 @@ static NSString *const cellID = @"Cell";
 
 - (NSMutableArray *)modelArray
 {
-    if (!_modelArray) {
+    if (!_modelArray)
+    {
         _modelArray = [NSMutableArray arrayWithCapacity:1];
     }
     return _modelArray;

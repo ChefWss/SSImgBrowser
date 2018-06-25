@@ -14,9 +14,11 @@
 @property(nonatomic, strong) UIImageView *imgV;
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, assign) BOOL zoomOut_In;//out-1 in-0
-@property(nonatomic, assign) CGFloat max_ScrollViewZoomScale;//最大捏合度
 
 @end
+
+static CGFloat thresholdScaleValue = 0.6f;        //比例临界值
+static CGFloat Default_DoubleTap_ZoomInScaleValue = 2.5f; //常规双击放大比例
 
 @implementation SSCollectionImgCell
 
@@ -29,8 +31,8 @@
         
         __strong typeof(self) strongSelf = weakSelf;
         strongSelf.model.img = image;
+        strongSelf.model.DoubleTap_ZoomInScaleValue = [strongSelf reckonDoubleTapZoomInScaleValueWithImgSize:image.size];
         
-//        [strongSelf reckonMax_ScrollViewZoomScaleWithImgSize:image.size];
     }];
 }
 
@@ -63,13 +65,13 @@
         
         
         UITapGestureRecognizer *singleTapOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-        singleTapOne.numberOfTouchesRequired = 1;
-        singleTapOne.numberOfTapsRequired = 1;
+        singleTapOne.numberOfTouchesRequired = 1; //单指
+        singleTapOne.numberOfTapsRequired = 1;    //单击
         singleTapOne.delegate = self;
         
         UITapGestureRecognizer *doubleTapOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-        doubleTapOne.numberOfTouchesRequired = 1;
-        doubleTapOne.numberOfTapsRequired = 2;
+        doubleTapOne.numberOfTouchesRequired = 1; //单指
+        doubleTapOne.numberOfTapsRequired = 2;    //双击
         doubleTapOne.delegate = self;
         
         [singleTapOne requireGestureRecognizerToFail:doubleTapOne];
@@ -83,7 +85,7 @@
 
 
 #pragma mark - 手势代理
-//单指
+//单击
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender
 {
     if (sender.numberOfTouchesRequired == 1)
@@ -93,28 +95,27 @@
 }
 
 
-//双指
+//双击
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender
 {
     if (sender.numberOfTouchesRequired == 1)
     {
-        
         float newscale = 0.0;
         
         if (_zoomOut_In)
         {
-            newscale = 2*1.5;
+            newscale = self.model.DoubleTap_ZoomInScaleValue;
             _zoomOut_In = NO;
         }
         else
         {
-            newscale = 1.0;
+            newscale = 1.0f;
             _zoomOut_In = YES;
         }
         
         CGRect zoomRect = [self zoomRectForScale:newscale withCenter:[sender locationInView:sender.view]];
         NSLog(@"zoomRect:%@",NSStringFromCGRect(zoomRect));
-        [_scrollView zoomToRect:zoomRect animated:YES];//重新定义其cgrect的x和y值        
+        [_scrollView zoomToRect:zoomRect animated:YES];//重新定义其cgrect的x和y值
     }
 }
 
@@ -147,30 +148,28 @@
     zoomRect.size.height = [_scrollView frame].size.height / scale;
     zoomRect.size.width = [_scrollView frame].size.width  / scale;
     
-    zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.0);
-    zoomRect.origin.y = center.y - (zoomRect.size.height / 2.0);
+    zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.00);
+    zoomRect.origin.y = center.y - (zoomRect.size.height / 2.00);
 
     return zoomRect;
 }
 
 
-#pragma mark - 计算最大捏合度
-- (void)reckonMax_ScrollViewZoomScaleWithImgSize:(CGSize)imgSize
+#pragma mark - 计算双击放大比例
+- (CGFloat)reckonDoubleTapZoomInScaleValueWithImgSize:(CGSize)imgSize
 {
-    if ((imgSize.width / imgSize.height ) >= (2 * WIDTH / HEIGHT))
+    if (HEIGHT / (WIDTH / imgSize.width * imgSize.height) < 0.6)
     {
-        _max_ScrollViewZoomScale = WIDTH / imgSize.width;
+        return HEIGHT / (WIDTH / imgSize.width * imgSize.height);
     }
-    else if ((imgSize.height / imgSize.width) >= (2 * HEIGHT / WIDTH))
+    else if (WIDTH / (HEIGHT / imgSize.height * imgSize.width) < 0.6)
     {
-
-        WIDTH / ( WIDTH * (imgSize.height / HEIGHT));
-
-        _max_ScrollViewZoomScale = HEIGHT / imgSize.height;
+        return WIDTH / (HEIGHT / imgSize.height * imgSize.width);
     }
-    else _max_ScrollViewZoomScale = 3.0f;
-
-    _scrollView.maximumZoomScale = _max_ScrollViewZoomScale;
+    else
+    {
+        return Default_DoubleTap_ZoomInScaleValue;
+    }
 }
 
 @end
