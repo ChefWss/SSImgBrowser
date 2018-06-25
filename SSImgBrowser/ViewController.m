@@ -9,36 +9,42 @@
 #import "ViewController.h"
 #import "SSImgBrowserView.h"
 #import "ImgModel.h"
-#import "TVUViewController.h"
 
 @interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, copy) NSArray            *imgUrlArray;
 @property (nonatomic, strong) NSMutableArray   *modelArray;
 @property (nonatomic, strong) SSImgBrowserView *imgBrowserView;
+
 @end
 
 static NSString *const cellID = @"Cell";
 
 @implementation ViewController
 
-- (SSImgBrowserView *)imgBrowserView {
+
+- (SSImgBrowserView *)imgBrowserView
+{
     if (!_imgBrowserView) {
         _imgBrowserView = [[SSImgBrowserView alloc] init];
     }
     return _imgBrowserView;
 }
 
-- (NSMutableArray *)modelArray {
+
+- (NSMutableArray *)modelArray
+{
     if (!_modelArray) {
         _modelArray = [NSMutableArray arrayWithCapacity:1];
     }
     return _modelArray;
 }
 
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor lightGrayColor];
     
     _imgUrlArray = @[
@@ -66,11 +72,13 @@ static NSString *const cellID = @"Cell";
                      @"http://upload-images.jianshu.io/upload_images/1455933-412255ddafdde125.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
                      @"http://upload-images.jianshu.io/upload_images/1455933-cee5618e9750de12.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
                      @"http://upload-images.jianshu.io/upload_images/1455933-5d5d6ba05853700a.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-                     @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528107682396&di=f1dcd63555681b51e4aa85845b5c9c14&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01e7ce5979aabea8012193a38ab69d.jpg%402o.jpg"];
+                     @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528107682396&di=f1dcd63555681b51e4aa85845b5c9c14&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01e7ce5979aabea8012193a38ab69d.jpg%402o.jpg"
+                     ];
     
     [self createModelArray];
-
+    [self createUI];
 }
+
 
 - (void)createModelArray
 {
@@ -80,6 +88,7 @@ static NSString *const cellID = @"Cell";
         [self.modelArray addObject:model];
     }
 }
+
 
 - (void)createUI
 {
@@ -98,12 +107,16 @@ static NSString *const cellID = @"Cell";
     [self.view addSubview:_collectionView];
 }
 
+
 #pragma mark - collectionview delegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return self.modelArray.count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     cell.backgroundColor = kRandomColor;
     UIImageView *imgV =  [[UIImageView alloc] init];
@@ -115,12 +128,14 @@ static NSString *const cellID = @"Cell";
     imgV.clipsToBounds = YES;//把超出部分裁减掉。
     cell.backgroundView = imgV;
     return cell;
-    
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
     return UIEdgeInsetsMake(ImgSpacing, ImgSpacing, ImgSpacing, ImgSpacing);
 }
+
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

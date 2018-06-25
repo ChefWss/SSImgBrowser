@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface SSImgBrowserView : UIView
+
 - (void)showImageBrowserInViewController:(UIViewController *)viewController
                           collectionView:(UICollectionView *)collectionView
                             imgIndexPath:(NSIndexPath *)indexPath
                                 modelArr:(NSMutableArray *)modelArr;
 
 - (void)closeAction;
+
 @end

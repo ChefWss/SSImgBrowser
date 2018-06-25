@@ -42,7 +42,6 @@
 @end
 
 
-
 @implementation InitialFrameModel
 
 - (instancetype)initWithcollectionView:(UICollectionView *)collectionV indexPath:(NSIndexPath *)indexPath onView:(UIView *)onView

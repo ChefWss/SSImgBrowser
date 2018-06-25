@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "TVUViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,17 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    TVUViewController *vc = [[TVUViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBar.translucent = YES;
-    nav.navigationBar.barTintColor = [UIColor greenColor];
-    self.window.rootViewController = nav;
-    [self.window makeKeyAndVisible];
-    
-    
     return YES;
 }
 

@@ -19,6 +19,7 @@
 @property (nonatomic, assign) NSInteger          imgIndex;
 @property (nonatomic, strong) NSMutableArray    *modelArray;
 @property (nonatomic, strong) UICollectionView  *collectionview;
+
 @end
 
 static NSString *const cellID = @"ImgCell";
@@ -26,24 +27,28 @@ static CGFloat CellImgSpacing = 0;
 
 @implementation SSImgBrowserView
 
-- (NSMutableArray *)modelArray {
-    if (!_modelArray) {
+
+- (NSMutableArray *)modelArray
+{
+    if (!_modelArray)
+    {
         _modelArray = [NSMutableArray array];
     }
     return _modelArray;
 }
 
-- (instancetype)init  {
-    
-    if (self = [super init]) {
-        
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
         self.backgroundColor = [UIColor blackColor];
         
         [self createUI];
-        
     }
     return self;
 }
+
 
 - (void)createUI
 {
@@ -52,7 +57,6 @@ static CGFloat CellImgSpacing = 0;
     layout.minimumLineSpacing = CellImgSpacing;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
     
     _collectionview.contentOffset = CGPointMake(0, 0);
     _collectionview = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
@@ -66,26 +70,31 @@ static CGFloat CellImgSpacing = 0;
     
     _collectionview.decelerationRate = 10;//我改的是10
     
-    
     _placeholderImgV = [[UIImageView alloc] init];
     _placeholderImgV.backgroundColor = [UIColor clearColor];
     _placeholderImgV.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_placeholderImgV];
 }
 
+
 #pragma mark - collectionView delegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return self.modelArray.count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     SSCollectionImgCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     cell.model = self.modelArray[indexPath.row];
     cell.delegate = self;
     return cell;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
@@ -97,10 +106,13 @@ static CGFloat CellImgSpacing = 0;
 //    return CGSizeMake(WIDTH, itemH);
 //}
 
+
 #pragma mark - closeAction
-- (void)delegateCellCloseAction {
+- (void)delegateCellCloseAction
+{
     [self closeAction];
 }
+
 
 - (void)closeAction
 {
@@ -125,6 +137,7 @@ static CGFloat CellImgSpacing = 0;
         
     }];
 }
+
 
 #pragma mark - show & dismiss
 - (void)showImageBrowserInViewController:(UIViewController *)viewController
@@ -157,5 +170,6 @@ static CGFloat CellImgSpacing = 0;
         self.placeholderImgV.hidden = YES;
     }];
 }
+
 
 @end
