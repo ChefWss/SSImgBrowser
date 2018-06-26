@@ -13,7 +13,6 @@
 @property (nonatomic, copy) NSString  *imgUrl;
 @property (nonatomic, strong) UIImage *img;
 @property(nonatomic, assign) CGSize imgSize;
-@property(nonatomic, assign) CGFloat max_ScrollViewZoomScale;//最大捏合度
 @property(nonatomic, assign) CGFloat DoubleTap_ZoomInScaleValue;//双击放大比例
 
 @end

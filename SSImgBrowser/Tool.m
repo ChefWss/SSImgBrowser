@@ -19,14 +19,5 @@
     return cellInSuperview;
 }
 
-+ (CGRect)getImgFrameWithIndex:(NSInteger)index
-{
-    CGFloat w = (WIDTH - ImgSpacing) / ImgCountEachLine - ImgSpacing;
-    CGFloat h = (WIDTH - ImgSpacing) / ImgCountEachLine - ImgSpacing;
-    CGFloat x = (index % ImgCountEachLine + 1) * (w + ImgSpacing) - w;
-    CGFloat y = (index / ImgCountEachLine) * (h + ImgSpacing) + ImgSpacing;
-    return CGRectMake(x, y, w, h);
-}
-
 @end
 

@@ -10,9 +10,10 @@
 #define PrefixHeader_pch
 
 
-#define ImgCountEachLine    3      //每行n张图
-#define ImgSpacing          10.00f //距离
-#define AnimationTime       0.25   //动画时间
+
+#define AnimationTime     0.25f   //动画时间
+
+#define ImgCellSpacing    15.00f  //图片之间的黑色间隙
 
 
 //屏幕适配因子

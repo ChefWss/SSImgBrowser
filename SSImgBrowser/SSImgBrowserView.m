@@ -9,6 +9,7 @@
 #import "SSImgBrowserView.h"
 #import "SSCollectionImgCell.h"
 #import "ImgModel.h"
+#import "SScollectionImageCellFlowLayout.h"
 
 @interface SSImgBrowserView()<UICollectionViewDelegate, UICollectionViewDataSource, CellCloseActionDelegate, UICollectionViewDelegateFlowLayout>
 {
@@ -52,11 +53,11 @@ static CGFloat CellImgSpacing = 0;
 
 - (void)createUI
 {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    SScollectionImageCellFlowLayout *layout = [[SScollectionImageCellFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(WIDTH, HEIGHT);
     layout.minimumLineSpacing = CellImgSpacing;
     layout.minimumInteritemSpacing = 0;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal; 
     
     _collectionview.contentOffset = CGPointMake(0, 0);
     _collectionview = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
@@ -98,8 +99,16 @@ static CGFloat CellImgSpacing = 0;
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
+
+
+//- (UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout
+//{
+//    UICollectionViewTransitionLayout *transitionlayout =
+//}
+
 //设置每个item的大小
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
 //    ImgModel *model = self.modelArray[indexPath.row];
 //    CGSize imgSize = model.imgSize;
 //    CGFloat itemH = WIDTH / imgSize.width * imgSize.height;

@@ -131,6 +131,9 @@ static CGFloat Default_DoubleTap_ZoomInScaleValue = 2.5f; //常规双击放大�
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
 {
     NSLog(@"结束缩放 - %f", scale);
+    
+//    scrollView.contentSize = _model.imgSize;
+//    _imgV.frame = _scrollView.bounds;
 }
 
 
@@ -138,16 +141,17 @@ static CGFloat Default_DoubleTap_ZoomInScaleValue = 2.5f; //常规双击放大�
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     NSLog(@"正在缩放.....");
+    
+//    scrollView.contentSize = _model.imgSize;
+//    _imgV.frame = _scrollView.bounds;
 }
 
 
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center
 {
     CGRect zoomRect;
-    
     zoomRect.size.height = [_scrollView frame].size.height / scale;
     zoomRect.size.width = [_scrollView frame].size.width  / scale;
-    
     zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.00);
     zoomRect.origin.y = center.y - (zoomRect.size.height / 2.00);
 
@@ -158,18 +162,35 @@ static CGFloat Default_DoubleTap_ZoomInScaleValue = 2.5f; //常规双击放大�
 #pragma mark - 计算双击放大比例
 - (CGFloat)reckonDoubleTapZoomInScaleValueWithImgSize:(CGSize)imgSize
 {
-    if (HEIGHT / (WIDTH / imgSize.width * imgSize.height) < 0.6)
+    if (HEIGHT / (WIDTH / imgSize.width * imgSize.height) < thresholdScaleValue)
     {
-        return HEIGHT / (WIDTH / imgSize.width * imgSize.height);
+        return (WIDTH / imgSize.width * imgSize.height) / HEIGHT;
     }
-    else if (WIDTH / (HEIGHT / imgSize.height * imgSize.width) < 0.6)
+    else if (WIDTH / (HEIGHT / imgSize.height * imgSize.width) < thresholdScaleValue)
     {
-        return WIDTH / (HEIGHT / imgSize.height * imgSize.width);
+        return (HEIGHT / imgSize.height * imgSize.width) / WIDTH;
     }
-    else
-    {
-        return Default_DoubleTap_ZoomInScaleValue;
-    }
+    else return Default_DoubleTap_ZoomInScaleValue;
 }
+
+
+#pragma mark - 计算ScrollView.ContentSize
+//- (CGSize)reckonScrollViewContentSizeWithImgSize:(CGSize)imgSize
+//{
+//    if (HEIGHT == (WIDTH / imgSize.width * imgSize.height))
+//    {
+//        //图片为屏幕尺寸
+//        return CGSizeMake(WIDTH, HEIGHT);
+//    }
+//    else if (HEIGHT > (WIDTH / imgSize.width * imgSize.height))
+//    {
+//        //图片横向扁
+//    }
+//    else
+//    {
+//        //图片竖向长
+//
+//    }
+//}
 
 @end
