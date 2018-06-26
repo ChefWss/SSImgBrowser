@@ -12,13 +12,11 @@
 
 
 #define AnimationTime     0.25f   //动画时间
-
 #define ImgCellSpacing    15.00f  //图片之间的黑色间隙
 
 
 //屏幕适配因子
 #define kPERCENT(f)                         (f * [UIScreen mainScreen].bounds.size.width / 375.00)
-//屏幕宽度,高度,bounds,size
 #define WIDTH                               [UIScreen mainScreen].bounds.size.width
 #define HEIGHT                              [UIScreen mainScreen].bounds.size.height
 //随机色

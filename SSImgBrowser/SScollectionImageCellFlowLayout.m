@@ -51,7 +51,7 @@
         // 3.计算比例
         CGFloat scale = 1 - delta / (self.collectionView.bounds.size.width * 0.5) * (ImgCellSpacing / WIDTH);
         
-        attr.transform = CGAffineTransformMakeScale(scale, 1);
+        attr.transform = CGAffineTransformMakeScale(scale, 1);//(x,y)
     }
     
     return attrs;

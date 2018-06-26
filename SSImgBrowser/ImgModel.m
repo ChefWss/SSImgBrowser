@@ -10,29 +10,24 @@
 
 @implementation ImgModel
 
-//- (UIImage *)img
-//{
-//    __block NSData *imageData = nil;
-//    if (!_img) {
-//        __weak typeof(self) weakSelf = self;
-//        [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:_imgUrl] completion:^(BOOL isInCache) {
-//            __strong typeof(self) strongSelf = weakSelf;
-//            if (isInCache) {
-//                NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:strongSelf.imgUrl]];
-//                if (cacheImageKey.length) {
-//                    NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
-//                    if (cacheImagePath.length) {
-//                        imageData = [NSData dataWithContentsOfFile:cacheImagePath];
-//                    }
-//                }
-//            }
-//            if (!imageData) {
-//                imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:strongSelf.imgUrl]];
-//            }
-//        }];
-//    }
-//    return [UIImage imageWithData:imageData];
-//}
+- (void)reckonImgSizeLayoutByScreenWithImgSize:(CGSize)imgSize
+{
+    if (HEIGHT == (WIDTH / imgSize.width * imgSize.height))
+    {
+        //图片为屏幕尺寸
+        self.imgLayoutTypeByScreen = ImgSizeLayoutByScreen_Screen;
+    }
+    else if (HEIGHT > (WIDTH / imgSize.width * imgSize.height))
+    {
+        //图片横向扁
+        self.imgLayoutTypeByScreen =  ImgSizeLayoutByScreen_Horizontal;
+    }
+    else
+    {
+        //图片竖向长
+        self.imgLayoutTypeByScreen =  ImgSizeLayoutByScreen_Vertical;
+    }
+}
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
