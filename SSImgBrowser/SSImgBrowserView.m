@@ -82,6 +82,8 @@ static NSString *const cellID = @"ImgCell";
     self.tipLabel.layer.masksToBounds = YES;
     self.tipLabel.layer.cornerRadius = 3.0f;
     [self addSubview:self.tipLabel];
+    
+    //
 }
 
 
